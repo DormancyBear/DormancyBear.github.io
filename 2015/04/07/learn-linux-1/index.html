@@ -22,35 +22,13 @@
 
 
 
+	<meta name="keywords" content="Linux," />
 
-    <meta name="keywords" content="Hexo,next" />
-
-
-
-
-
-    <link rel="shorticon icon" type="image/x-icon" href="/images/favicon.ico?v=0.4.0" />
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?50c15455e37f70aea674ff4a663eef27";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-  <title> 刘大耗子の博客 </title>
+  <title> Linux学习笔记0x00 SSH // 刘大耗子の博客 </title>
 </head>
 
 <body>
-  <div class="container one-column 
-   page-home 
-">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <div id="header" class="header">
@@ -125,7 +103,6 @@
           <div id="posts" class="posts-expand">
             
   
-    
 
   <div class="post post-type-normal ">
     <div class="post-header">
@@ -136,9 +113,7 @@
           
           
             
-              <a class="post-title-link" href="/2015/04/07/learn-linux-1/">
-                Linux学习笔记0x00 SSH
-              </a>
+              Linux学习笔记0x00 SSH
             
           
         </h1>
@@ -186,8 +161,7 @@
         
 
         
-          
-            <h1 id="Linux学习笔记0x00_SSH">Linux学习笔记0x00 SSH</h1><p>SSH 实际上是一组远程登录协议，用来从某个客户机通过互联网登录到 UNIX/Linux 主机上。</p>
+          <h1 id="Linux学习笔记0x00_SSH">Linux学习笔记0x00 SSH</h1><p>SSH 实际上是一组远程登录协议，用来从某个客户机通过互联网登录到 UNIX/Linux 主机上。</p>
 <h4 id="不需要口令的用户认证"><em>不需要口令的用户认证</em></h4><p>SSH提供了两种级别的安全验证：</p>
 <ol>
 <li><p>基于密码的安全验证。知道帐号和密码，就可以登录到远程主机；</p>
@@ -234,7 +208,6 @@
 </ol>
 <h2 id="后记">后记</h2><p>将自己在 Linux 上的学习过程记录下来，就这样吧(＠￣ー￣＠)</p>
 
-          
         
       </div>
     
@@ -252,222 +225,36 @@
         
 
         
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/04/03/hexo-problem/">
-                Hexo搭建博客过程中遇到的problem
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2015-04-03
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
+          <div class="post-nav">
+            <div class="post-nav-prev post-nav-item">
               
-                <a href="/categories/编程的世界/">编程的世界</a>
+            </div>
 
-                
-                
-
+            <div class="post-nav-next post-nav-item">
               
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/04/03/hexo-problem/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/03/hexo-problem/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h1 id="Hexo搭建博客中遇到的problem">Hexo搭建博客中遇到的problem</h1><p><strong>晕晕呼呼（︶︿︶）=凸</strong></p>
-<p>在Hexo搭建博客过程中，我最开始并不是直接去的官网，而是百度了一篇教程，准备依样画葫芦，结果。。。总是出现一些奇怪的问题，好吧，将一些“坑得我晕晕呼呼”的题目的问题在这记录一下 〒▽〒</p>
-<h3 id="0x00_找不到需要的命令">0x00 找不到需要的命令</h3><p>貌似网上能找到的教程所使用的Hexo的版本都是旧的了，因此，在你照着教程进行了所谓的全套安装配置后，神奇地发现，有些命令好像不存在啊摔（╯‵□′）╯︵┴─┴ ，一个是<code>$ hexo s</code>，这个需要在安装Hexo完成后执行以下命令<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo init &lt;folder&gt;</span><br><span class="line"><span class="variable">$ </span>cd &lt;folder&gt;</span><br><span class="line"><span class="variable">$ </span>npm install</span><br></pre></td></tr></table></figure></p>
-<p>另一个是<code>$ hexo deploy</code>，这个需要安装<code>hexo-deployer-git</code>,命令是<br><code>$ npm install hexo-deployer-git --save</code></p>
-<h3 id="0x01_部署过程中出现错误">0x01 部署过程中出现错误</h3><p>同上，版本问题，<code>_config.yml</code>文件中的配置出现错误，教程中是<br><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="class"><span class="keyword">type</span>: <span class="title">github</span></span></span><br></pre></td></tr></table></figure></p>
-<p>而在现在的版本中应该是<br><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="class"><span class="keyword">type</span>: <span class="title">git</span></span></span><br></pre></td></tr></table></figure></p>
-<h3 id="0x02_error:_RPC_failed;_result=55,_HTTP_code_=_200">0x02 error: RPC failed; result=55, HTTP code = 200</h3><p>执行<code>$ hexo deploy</code>将博客部署到github上时出现错误：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">error: <span class="type">RPC</span> failed; <span class="literal">result</span>=<span class="number">55</span>, <span class="type">HTTP</span> code = <span class="number">200</span></span><br><span class="line">fatal: <span class="type">The</span> remote <span class="keyword">end</span> hung up unexpectedly</span><br></pre></td></tr></table></figure></p>
-<p>经检查，发现问题处在<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## <span class="string">Docs:</span> <span class="string">http:</span><span class="comment">//hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="string">deploy:</span></span><br><span class="line"><span class="label">  type:</span> git</span><br><span class="line"><span class="label">  repository:</span> <span class="string">https:</span><span class="comment">//github.com/PirateHao/PirateHao.github.io.git</span></span><br><span class="line"><span class="label">  branch:</span> master</span><br></pre></td></tr></table></figure></p>
-<p>中repository所用的协议上，将https换成ssh就可以成功部署了：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## <span class="string">Docs:</span> <span class="string">http:</span><span class="comment">//hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="string">deploy:</span></span><br><span class="line"><span class="label">  type:</span> git</span><br><span class="line"><span class="label">  repository:</span> git<span class="annotation">@github</span>.<span class="string">com:</span>PirateHao/PirateHao.github.io.git</span><br><span class="line"><span class="label">  branch:</span> master</span><br></pre></td></tr></table></figure></p>
-<h3 id="0x03_生成过程中出现错误">0x03 生成过程中出现错误</h3><p>执行<code>$ hexo g</code>生成时出现错误：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR Process failed:</span><br><span class="line">JS-YAML: can <span class="operator">not</span> <span class="built_in">read</span> <span class="operator">a</span> block mapping entry; <span class="operator">a</span> multiline key may <span class="operator">not</span> be <span class="operator">an</span> implicit key <span class="keyword">at</span> <span class="built_in">line</span> <span class="number">5</span>, column <span class="number">1</span>:</span><br></pre></td></tr></table></figure></p>
-<p>经检查，发现问题出于设置语句中冒号：后面没留空格，没留空格……</p>
-<h2 id="后记">后记</h2><p>我就看看，不说话(~￣▽￣)~</p>
-
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-          <div class="post-tags">
-            
-              <a href="/tags/hexo/">
-                #hexo
-              </a>
-            
+                <a href="/2015/04/03/hexo-problem/">Hexo搭建博客过程中遇到的problem</a>
+              
+            </div>
           </div>
         
 
         
-
-        
-        
-          <div class="post-eof"></div>
         
       </div>
     
   </div>
+
 
 
   
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
+    <div class="comments" id="comments">
+      
+        <div class="ds-thread" data-thread-key="2015/04/07/learn-linux-1/"
+             data-title="Linux学习笔记0x00 SSH" data-url="http://yoursite.com/2015/04/07/learn-linux-1/">
+        </div>
 
       
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/04/01/learn-nodejs-1/">
-                Node.js学习笔记
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2015-04-01
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="/categories/编程的世界/">编程的世界</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/04/01/learn-nodejs-1/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/01/learn-nodejs-1/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
     </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h1 id="Node-js学习笔记">Node.js学习笔记</h1><h2 id="0x00_前言">0x00 前言</h2><p>因为hexo的关系，对Node.js产生了兴趣，下午上课的时候闲着无聊（orz）看了下<a href="http://www.nodebeginner.org/index-zh-cn.html" target="_blank" rel="external">Node入门</a>与朴灵老师的《深入浅出Node.js》一书。</p>
-<p>发现与一般的后端语言相比，Node.js实现异步处理请求的方式真是太有趣了———在php等语言的相关编程中，程序的编写过程更符合我们在自然语言中的线性思维习惯，即以一种同步阻塞的方式来执行，而Node.js却是通过“各种跳”的方式来实现了异步。</p>
-<h2 id="0x01_机制初探">0x01 机制初探</h2><p>我们知道，JavaScript是单线程的，这就意味着，如果以同步的方式运行，一旦网页POST过来一张图片之类的资源，那么，程序将停顿以接收这些很大的网络资源，在这期间，任何用户发起的请求都不会被响应，可见，花费在I/O上的代价是极其昂贵的，因此，Node采取了几种很有趣的机制以实现异步I/O。</p>
-<p>在进程启动时，Node便会创建一个类似于while(true)的循环，称为事件循环（Event Loop），每次循环的过程就是查看是否有事件待处理，如果有，就取出事件及其相关的回调函数(Callback)，执行他们，然后进入下个循环。</p>
-<p>而每次循环中是怎么判断是否有事件待处理的呢？它是通过一种称为观察者的概念来实现的，在我理解，观察者类似于一个任务队列，每当有事件发生时（如网络请求、文件I/O等），这些事件就会被传递到对应的观察者那里（每个事件循环中有一个或多个观察者，观察者有多种分类，如文件I/O观察者、网络I/O观察者等），事件循环则从观察者那里取出事件并处理。</p>
-<p>另外，Node.js令我感到新奇的一个方面是：在一般的（同步）编程中，回调函数往往由我们自行调用，但在Node里，回调函数却并不由开发者来调用。</p>
-<p>当JavaScript发起调用，它会将当前的I/O操作推入线程池中等待执行，而自身却立即返回，继续执行当前任务的后续操作，Node以这种方式实现了异步。</p>
-<p>至于线程池中的I/O操作调用呢？其实，在每次事件循环中，I/O观察者都会检查线程池中是否有执行完的请求，如果存在，就会将其加入到队列中，然后把它当作事件处理，取出回调函数和结果调用执行。</p>
-<h2 id="0x02_误解">0x02 误解</h2><h5 id="Node是单线程的">Node是单线程的</h5><p>这里的单线程仅仅只是JavaScript执行在单线程中罢了，Node自身其实是多线程的，在Node中，无论是*nix还是Windows平台，内部完成I/O任务的另有线程池。尽管用户代码无法并行执行，但所有的I/O(磁盘I/O和网络I/O等)却是可以并行的。</p>
-<h2 id="0x03_后记">0x03 后记</h2><p>出于兴趣，简单地接触了下Node.js，感觉它很适合用来做I/O调度，在复杂计算上却没有多大优势（可能我过于武断。。。），另外，它以高并发著称，实现的方式确实挺好玩的（也可能是我孤陋寡闻，至少这种实现方式对于我十分新颖。。。），在这里做个小笔记，以后重拾的时候也好有个参考:)</p>
-
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-          <div class="post-tags">
-            
-              <a href="/tags/Node-js/">
-                #Node.js
-              </a>
-            
-          </div>
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
   
 
           </div>
@@ -487,6 +274,15 @@
 <div id="sidebar" class="sidebar">
   <div class="sidebar-inner">
 
+    
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview">
+          站点概览
+        </li>
+      </ul>
     
 
     <div class="site-overview">
@@ -541,6 +337,17 @@
 
     </div>
 
+    
+      <div class="post-toc-wrap sidebar-panel-active">
+        <div class="post-toc-indicator-top post-toc-indicator"></div>
+        <div class="post-toc">
+          
+          
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux学习笔记0x00_SSH"><span class="nav-number">1.</span> <span class="nav-text">Linux学习笔记0x00 SSH</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不需要口令的用户认证"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">不需要口令的用户认证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSH翻墙"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">SSH翻墙</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SCP"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">SCP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">1.1.</span> <span class="nav-text">后记</span></a></li></ol></li></ol></div>
+          
+        </div>
+        <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+      </div>
     
 
   </div>
@@ -754,6 +561,328 @@
 
 
   
+  
+<script type="text/javascript" id="bootstrap.scrollspy.custom">
+  /* ========================================================================
+  * Bootstrap: scrollspy.js v3.3.2
+  * http://getbootstrap.com/javascript/#scrollspy
+  * ========================================================================
+  * Copyright 2011-2015 Twitter, Inc.
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * ======================================================================== */
+
+  /**
+   * Custom by iissnan
+   *
+   * - Add a `clear.bs.scrollspy` event.
+   * - Esacpe targets selector.
+   */
+
+
+  +function ($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body          = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector       = (this.options.target || '') + ' .nav li > a'
+      this.offsets        = []
+      this.targets        = []
+      this.activeTarget   = null
+      this.scrollHeight   = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION  = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function () {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function () {
+      var that          = this
+      var offsetMethod  = 'offset'
+      var offsetBase    = 0
+
+      this.offsets      = []
+      this.targets      = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase   = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function () {
+          var $el   = $(this)
+          var href  = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href
+            && $href.length
+            && $href.is(':visible')
+            && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+        })
+        .sort(function (a, b) { return a[0] - b[0] })
+        .each(function () {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function () {
+      var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets      = this.offsets
+      var targets      = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy')  // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i]
+          && scrollTop >= offsets[i]
+          && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+          && this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function (target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function () {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function () {
+        var $this   = $(this)
+        var data    = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy             = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function () {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function () {
+      $('[data-spy="scroll"]').each(function () {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0 && isDesktop()) {
+        setTimeout(function () {
+          $('.sidebar-toggle').trigger('click');
+        }, 800);
+      }
+    });
+  </script>
+
+
+
 
   
 

@@ -161,15 +161,17 @@
         
 
         
-          <h1 id="Hexo搭建博客中遇到的problem">Hexo搭建博客中遇到的problem</h1><p><strong>我承认，我有“罪”，Orz</strong></p>
-<p>在Hexo搭建博客过程中，我最开始并不是直接去的官网，而是百度了一篇教程，准备依样画葫芦，结果。。。总是出现一些奇怪的问题，好吧，将碰到的一些“坑死人不偿命”的问题在这记录一下，下次一定吸取教训〒▽〒</p>
-<h3 id="1-_找不到需要的命令">1. 找不到需要的命令</h3><p>貌似网上能找到的教程所使用的Hexo的版本都是旧的了，因此，在你照着教程进行了所谓的全套安装配置后，神奇地发现，有些命令好像不存在啊摔（╯‵□′）╯︵┴─┴ ，一个是<code>$ hexo s</code>，这个需要在安装Hexo完成后执行以下命令<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo init &lt;folder&gt;</span><br><span class="line"><span class="variable">$ </span>cd &lt;folder&gt;</span><br><span class="line"><span class="variable">$ </span>npm install</span><br></pre></td></tr></table></figure></p>
+          <h1 id="Hexo搭建博客中遇到的problem">Hexo搭建博客中遇到的problem</h1><p><strong>晕晕呼呼（︶︿︶）=凸</strong></p>
+<p>在Hexo搭建博客过程中，我最开始并不是直接去的官网，而是百度了一篇教程，准备依样画葫芦，结果。。。总是出现一些奇怪的问题，好吧，将一些“坑得我晕晕呼呼”的题目的问题在这记录一下 〒▽〒</p>
+<h3 id="0x00_找不到需要的命令">0x00 找不到需要的命令</h3><p>貌似网上能找到的教程所使用的Hexo的版本都是旧的了，因此，在你照着教程进行了所谓的全套安装配置后，神奇地发现，有些命令好像不存在啊摔（╯‵□′）╯︵┴─┴ ，一个是<code>$ hexo s</code>，这个需要在安装Hexo完成后执行以下命令<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo init &lt;folder&gt;</span><br><span class="line"><span class="variable">$ </span>cd &lt;folder&gt;</span><br><span class="line"><span class="variable">$ </span>npm install</span><br></pre></td></tr></table></figure></p>
 <p>另一个是<code>$ hexo deploy</code>，这个需要安装<code>hexo-deployer-git</code>,命令是<br><code>$ npm install hexo-deployer-git --save</code></p>
-<h3 id="2-_部署过程中出现错误">2. 部署过程中出现错误</h3><p>同上，版本问题，<code>_config.yml</code>文件中的配置出现错误，教程中是<br><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="class"><span class="keyword">type</span>: <span class="title">github</span></span></span><br></pre></td></tr></table></figure></p>
+<h3 id="0x01_部署过程中出现错误">0x01 部署过程中出现错误</h3><p>同上，版本问题，<code>_config.yml</code>文件中的配置出现错误，教程中是<br><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="class"><span class="keyword">type</span>: <span class="title">github</span></span></span><br></pre></td></tr></table></figure></p>
 <p>而在现在的版本中应该是<br><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="class"><span class="keyword">type</span>: <span class="title">git</span></span></span><br></pre></td></tr></table></figure></p>
-<h3 id="3-_error:_RPC_failed;_result=55,_HTTP_code_=_200">3. error: RPC failed; result=55, HTTP code = 200</h3><p>执行<code>$ hexo deploy</code>将博客部署到github上时出现错误：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">error: <span class="type">RPC</span> failed; <span class="literal">result</span>=<span class="number">55</span>, <span class="type">HTTP</span> code = <span class="number">200</span></span><br><span class="line">fatal: <span class="type">The</span> remote <span class="keyword">end</span> hung up unexpectedly</span><br></pre></td></tr></table></figure></p>
+<h3 id="0x02_error:_RPC_failed;_result=55,_HTTP_code_=_200">0x02 error: RPC failed; result=55, HTTP code = 200</h3><p>执行<code>$ hexo deploy</code>将博客部署到github上时出现错误：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">error: <span class="type">RPC</span> failed; <span class="literal">result</span>=<span class="number">55</span>, <span class="type">HTTP</span> code = <span class="number">200</span></span><br><span class="line">fatal: <span class="type">The</span> remote <span class="keyword">end</span> hung up unexpectedly</span><br></pre></td></tr></table></figure></p>
 <p>经检查，发现问题处在<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## <span class="string">Docs:</span> <span class="string">http:</span><span class="comment">//hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="string">deploy:</span></span><br><span class="line"><span class="label">  type:</span> git</span><br><span class="line"><span class="label">  repository:</span> <span class="string">https:</span><span class="comment">//github.com/PirateHao/PirateHao.github.io.git</span></span><br><span class="line"><span class="label">  branch:</span> master</span><br></pre></td></tr></table></figure></p>
 <p>中repository所用的协议上，将https换成ssh就可以成功部署了：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## <span class="string">Docs:</span> <span class="string">http:</span><span class="comment">//hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="string">deploy:</span></span><br><span class="line"><span class="label">  type:</span> git</span><br><span class="line"><span class="label">  repository:</span> git<span class="annotation">@github</span>.<span class="string">com:</span>PirateHao/PirateHao.github.io.git</span><br><span class="line"><span class="label">  branch:</span> master</span><br></pre></td></tr></table></figure></p>
+<h3 id="0x03_生成过程中出现错误">0x03 生成过程中出现错误</h3><p>执行<code>$ hexo g</code>生成时出现错误：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR Process failed:</span><br><span class="line">JS-YAML: can <span class="operator">not</span> <span class="built_in">read</span> <span class="operator">a</span> block mapping entry; <span class="operator">a</span> multiline key may <span class="operator">not</span> be <span class="operator">an</span> implicit key <span class="keyword">at</span> <span class="built_in">line</span> <span class="number">5</span>, column <span class="number">1</span>:</span><br></pre></td></tr></table></figure></p>
+<p>经检查，发现问题出于设置语句中冒号：后面没留空格，没留空格……</p>
 <h2 id="后记">后记</h2><p>我就看看，不说话(~￣▽￣)~</p>
 
         
@@ -191,6 +193,8 @@
         
           <div class="post-nav">
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2015/04/07/learn-linux-1/">Linux学习笔记0x00 SSH</a>
               
             </div>
 
@@ -257,11 +261,11 @@
       <p class="site-description motion-element">写些想写的东西，就这样～～</p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">
-            <span class="site-state-item-count">2</span>
+            <span class="site-state-item-count">3</span>
             <span class="site-state-item-name">标签</span>
         </div>
         <div class="site-state-item site-state-pages">
@@ -307,7 +311,7 @@
         <div class="post-toc">
           
           
-            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo搭建博客中遇到的problem"><span class="nav-number">1.</span> <span class="nav-text">Hexo搭建博客中遇到的problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_找不到需要的命令"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. 找不到需要的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_部署过程中出现错误"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 部署过程中出现错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-_error:_RPC_failed;_result=55,_HTTP_code_=_200"><span class="nav-number">1.0.3.</span> <span class="nav-text">3. error: RPC failed; result=55, HTTP code = 200</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">1.1.</span> <span class="nav-text">后记</span></a></li></ol></li></ol></div>
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo搭建博客中遇到的problem"><span class="nav-number">1.</span> <span class="nav-text">Hexo搭建博客中遇到的problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00_找不到需要的命令"><span class="nav-number">1.0.1.</span> <span class="nav-text">0x00 找不到需要的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01_部署过程中出现错误"><span class="nav-number">1.0.2.</span> <span class="nav-text">0x01 部署过程中出现错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02_error:_RPC_failed;_result=55,_HTTP_code_=_200"><span class="nav-number">1.0.3.</span> <span class="nav-text">0x02 error: RPC failed; result=55, HTTP code = 200</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03_生成过程中出现错误"><span class="nav-number">1.0.4.</span> <span class="nav-text">0x03 生成过程中出现错误</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">1.1.</span> <span class="nav-text">后记</span></a></li></ol></li></ol></div>
           
         </div>
         <div class="post-toc-indicator-bottom post-toc-indicator"></div>
