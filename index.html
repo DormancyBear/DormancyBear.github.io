@@ -188,7 +188,7 @@
         
           
             <h1 id="Linux学习笔记0x00_SSH">Linux学习笔记0x00 SSH</h1><p>SSH 实际上是一组远程登录协议，用来从某个客户机通过互联网登录到 UNIX/Linux 主机上。</p>
-<h4 id="不需要口令的用户认证"><em>不需要口令的用户认证</em></h4><p>SSH提供了两种级别的安全验证：</p>
+<h3 id="不需要口令的用户认证"><em>不需要口令的用户认证</em></h3><p>SSH提供了两种级别的安全验证：</p>
 <ol>
 <li><p>基于密码的安全验证。知道帐号和密码，就可以登录到远程主机；</p>
 </li>
@@ -202,11 +202,31 @@
 <li>将公钥复制到远程服务器上</li>
 <li>禁用服务器上的 SSH 账户密码登录</li>
 </ul>
-<p><strong>SSH agent</strong><br>简介：ssh-agent 是专为方便处理密钥而设计的特殊程序，一般会设置成在登录会话的时候自动启动，并在整个会话中保持运行。<br>作用：将已解密的私钥缓存起来，在需要的时候提供给 SSH 客户端。这样，只需要在将私钥加入 SSH agent 缓存的时候输入一次密码短语就可以了，使我们无需记住每一个密钥对的密码短语。<br>命令：<code>ssh-add ~/.ssh/identity</code><br>(将 ~/.ssh/identity 专用 RSA 密钥添加到 ssh-agent 的高速缓存中)<br>(其他命令请参考<a href="https://wiki.archlinux.org/index.php/SSH_Keys_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29" target="_blank" rel="external">SSH Keys</a>)</p>
-<h4 id="SSH翻墙"><em>SSH翻墙</em></h4><p>原理：通过 SSH 构建一个加密的 SOCKS 协议信道。</p>
-<p>SOCKS 协议：<br>主要用于局域网防火墙之内的机器访问外网服务器，实际上是一个转发协议。<br>作用：将客户端对某个远程服务器的请求送到 SOCKS 服务器端，通过 SOCKS 服务器端发起对目标服务器的请求并获得结果，SOCKS 服务器端再将结果发回给客户端。</p>
-<p>实现步骤：</p>
-<ol>
+<h5 id="SSH_agent"><em>SSH agent</em></h5><p>简介：ssh-agent 是专为方便处理密钥而设计的特殊程序，一般会设置成在登录会话的时候自动启动，并在整个会话中保持运行。<br>作用：将已解密的私钥缓存起来，在需要的时候提供给 SSH 客户端。这样，只需要在将私钥加入 SSH agent 缓存的时候输入一次密码短语就可以了，使我们无需记住每一个密钥对的密码短语。<br>命令：<code>ssh-add ~/.ssh/identity</code><br>(将 ~/.ssh/identity 专用 RSA 密钥添加到 ssh-agent 的高速缓存中)<br>(其他命令请参考<a href="https://wiki.archlinux.org/index.php/SSH_Keys_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29" target="_blank" rel="external">SSH Keys</a>)</p>
+<h3 id="SSH翻墙"><em>SSH翻墙</em></h3><p>原理：通过 SSH 构建一个加密的 SOCKS 协议信道。</p>
+<h5 id="1-_SOCKS_协议："><em>1. SOCKS 协议：</em></h5><p>主要用于局域网防火墙之内的机器访问外网服务器，实际上是一个转发协议。<br>作用：将客户端对某个远程服务器的请求送到 SOCKS 服务器端，通过 SOCKS 服务器端发起对目标服务器的请求并获得结果，SOCKS 服务器端再将结果发回给客户端。</p>
+<h5 id="2-_SSH隧道"><em>2. SSH隧道</em></h5><h6 id="绑定本地端口"><strong><em>绑定本地端口</em></strong></h6><p>参数：<code>-D port</code><br>命令：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>ssh -<span class="constant">D </span><span class="number">8080</span> user<span class="variable">@host</span></span><br></pre></td></tr></table></figure></p>
+<p>解释：SSH 建立一个 socket 去监听本地的8080端口。一旦有数据传向那个端口，就自动把它转移到 SSH 连接上面，发往远程主机。</p>
+<h6 id="本地端口转发"><strong><em>本地端口转发</em></strong></h6><p>参数：<code>-L port:host:hostport</code><br>情景：本地主机 host1 与远程主机 host2 之间无法连通，而主机 host3 可同时连通这两台主机。于是，可以通过host3，将 host1 连上 host2。<br>在 host1 执行下面的命令：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="tag">ssh</span> <span class="tag">-L</span> 2121<span class="pseudo">:host2</span><span class="pseudo">:21</span> <span class="tag">host3</span></span><br></pre></td></tr></table></figure></p>
+<p>命令中的 L 参数接受三个值：”本地端口:目标主机:目标主机端口”，它们之间用冒号分隔。<br>命令解释：本地机器 host1 将分配一个 socket 侦听 2121 端口, 一旦有数据传向这个端口，就自动把它转移到SSH连接上面，发往远程主机 host3，同时远程主机 host3 和 host2 的 21 端口建立连接，host3将把接收到的所有数据，转发到目标主机 host2 的21端口。</p>
+<p><strong>注：</strong></p>
+<ul>
+<li>特殊用法：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="tag">ssh</span> <span class="tag">-L</span> 5900<span class="pseudo">:localhost</span><span class="pseudo">:5900</span> <span class="tag">host3</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>解释：表示将本机的5900端口绑定 host3 的5900端口（这里的localhost指的是host3，因为目标主机是相对host3而言的）。</p>
+<ul>
+<li>通过host3的端口转发，SSH登录host2：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="tag">ssh</span> <span class="tag">-L</span> 9001<span class="pseudo">:host2</span><span class="pseudo">:22</span> <span class="tag">host3</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这时，只要ssh登录本机的9001端口，就相当于登录了 host2：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -<span class="tag">p</span> <span class="number">9001</span> localhost</span><br></pre></td></tr></table></figure></p>
+<h6 id="远程端口转发"><strong><em>远程端口转发</em></strong></h6><p>参数：<code>-R port:host:hostport</code><br>远程端口转发提供了和本地转发相反的功能，它允许任何远程主机通过SSH隧道连接到本机。<br>承接上面的例子，要想让 host1 连通 host2，也在 host3 执行下面的命令：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="tag">ssh</span> <span class="tag">-R</span> 2121<span class="pseudo">:host2</span><span class="pseudo">:21</span> <span class="tag">host1</span></span><br></pre></td></tr></table></figure></p>
+<p>R参数接受三个值：”远程主机端口:目标主机:目标主机端口”。<br>命令解释：让远程主机 host1 分配一个 socket 监听它自己的2121端口，一旦有数据传向这个端口，就自动把它转移到SSH连接上面，发往本地主机 host3，同时本地主机 host3 和 host2 的 21 端口建立连接，host3 将把接收到的所有数据，转发到目标主机 host2 的21端口。<br>由于对于 host3 来说，host1 是远程主机，所以被称为”远程端口绑定”。</p>
+<p>注：</p>
+<ul>
+<li>“远程端口转发”的前提条件是，host1和host3两台主机都有 sshD 和 ssh 客户端。</li>
+</ul>
+<h5 id="3-_实现步骤"><em>3. 实现步骤</em></h5><ol>
 <li><p>开始连接：<br><code>$ ssh -ND 4711 user@host</code><br>(“user”是你在“host”这台SSH服务器上运行的用户名。它会让你输入密码。“N”表示不采用交互提示，而“D”表示指定监听的本地端口)</p>
 </li>
 <li><p>配置浏览器(或其它程序)：<br>将浏览器设置好使用 SOCKS 代理后，之后发起的网站浏览请求将由浏览器将其扔进 SOCKS 本地端口，然后在远程端口另一端由 SSH 服务器端向真正的服务器发起请求并返回结果。</p>
@@ -221,7 +241,7 @@
 <li><p>使用 SSH 加 HTTP 代理（比如 AutoProxy）。此时的区别在于浏览器在使用 HTTP 代理时不会做本地域名解析，而是通过 CONNECT 命令交给远程服务器，从而得以绕开本地被污染的 DNS 数据。</p>
 </li>
 </ol>
-<h4 id="SCP"><em>SCP</em></h4><p>文件 从 本地 复制到 远程：<br><code>scp SourceFile user@host:directory/TargetFile</code></p>
+<h3 id="SCP"><em>SCP</em></h3><p>文件 从 本地 复制到 远程：<br><code>scp SourceFile user@host:directory/TargetFile</code></p>
 <p>文件 从 远程 复制到 本地：<br><code>scp user@host:directory/SourceFile TargetFile</code></p>
 <p>目录 从 远程 复制到 本地：<br><code>scp -r user@host:directory/SourceFolder TargetFolder</code></p>
 <p>默认端口22，可指定端口，如下:<br><code>scp -P 2222 user@host:directory/SourceFile TargetFile</code></p>
