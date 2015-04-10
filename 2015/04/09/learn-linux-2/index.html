@@ -22,35 +22,13 @@
 
 
 
+	<meta name="keywords" content="Linux," />
 
-    <meta name="keywords" content="Hexo,next" />
-
-
-
-
-
-    <link rel="shorticon icon" type="image/x-icon" href="/images/favicon.ico?v=0.4.0" />
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?50c15455e37f70aea674ff4a663eef27";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-  <title> 刘大耗子の博客 </title>
+  <title> Linux学习笔记0x01 作业管理 // 刘大耗子の博客 </title>
 </head>
 
 <body>
-  <div class="container one-column 
-   page-home 
-">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <div id="header" class="header">
@@ -125,7 +103,6 @@
           <div id="posts" class="posts-expand">
             
   
-    
 
   <div class="post post-type-normal ">
     <div class="post-header">
@@ -136,9 +113,7 @@
           
           
             
-              <a class="post-title-link" href="/2015/04/09/learn-linux-2/">
-                Linux学习笔记0x01 作业管理
-              </a>
+              Linux学习笔记0x01 作业管理
             
           
         </h1>
@@ -186,8 +161,7 @@
         
 
         
-          
-            <h1 id="Linux学习笔记0x01_作业管理">Linux学习笔记0x01 作业管理</h1><p>作业管理 (job control) 是当我们登陆系统取得 bash shell 后，在单一终端机介面下同时进行多个工作的行为管理。</p>
+          <h1 id="Linux学习笔记0x01_作业管理">Linux学习笔记0x01 作业管理</h1><p>作业管理 (job control) 是当我们登陆系统取得 bash shell 后，在单一终端机介面下同时进行多个工作的行为管理。</p>
 <h3 id="限制"><em>限制</em></h3><ol>
 <li><p>作业管理中，每个工作都必须是目前 bash shell 的子进程，即：我们只能管理自己的 bash，而无法由 tty1 的环境去管理 tty2 的 bash；</p>
 </li>
@@ -235,7 +209,6 @@
 </ol>
 <h3 id="后记"><em>后记</em></h3><p>瘦小离家老大归,乡音无改肉成堆。<br>儿童相见不相识,惊问胖子你是谁？</p>
 
-          
         
       </div>
     
@@ -253,286 +226,40 @@
         
 
         
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/04/07/learn-linux-1/">
-                Linux学习笔记0x00 SSH
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2015-04-07
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
+          <div class="post-nav">
+            <div class="post-nav-prev post-nav-item">
               
-                <a href="/categories/操作系统の哲♂学/">操作系统の哲♂学</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/04/07/learn-linux-1/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/07/learn-linux-1/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h1 id="Linux学习笔记0x00_SSH">Linux学习笔记0x00 SSH</h1><p>SSH 实际上是一组远程登录协议，用来从某个客户机通过互联网登录到 UNIX/Linux 主机上。</p>
-<h3 id="不需要口令的用户认证"><em>不需要口令的用户认证</em></h3><p>SSH提供了两种级别的安全验证：</p>
-<ol>
-<li><p>基于密码的安全验证。知道帐号和密码，就可以登录到远程主机；</p>
-</li>
-<li><p>基于密钥的安全验证。用户预先将自己的公钥储存在远程主机上，登录的时候，远程主机会向用户发送一段随机字符串，用户用自己的私钥加密后，再发回来。远程主机用事先储存的公钥进行解密，如果成功，就证明用户是可信的，直接允许登录 shell，不再要求密码。</p>
-</li>
-</ol>
-<p>第二种方式无需发送密码到网络中，必要时还可加上密码短语 (passphrase) 的使用，显然更加安全。</p>
-<p>实现步骤：(具体可参考<a href="https://wiki.archlinux.org/index.php/Secure_Shell_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29" target="_blank" rel="external">Secure Shell</a>及<a href="https://wiki.archlinux.org/index.php/SSH_Keys_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29" target="_blank" rel="external">SSH Keys</a>)</p>
-<ul>
-<li>生成密钥对(<code>ssh-keygen</code>命令)</li>
-<li>将公钥复制到远程服务器上</li>
-<li>禁用服务器上的 SSH 账户密码登录</li>
-</ul>
-<h5 id="SSH_agent"><em>SSH agent</em></h5><p>简介：ssh-agent 是专为方便处理密钥而设计的特殊程序，一般会设置成在登录会话的时候自动启动，并在整个会话中保持运行。<br>作用：将已解密的私钥缓存起来，在需要的时候提供给 SSH 客户端。这样，只需要在将私钥加入 SSH agent 缓存的时候输入一次密码短语就可以了，使我们无需记住每一个密钥对的密码短语。<br>命令：<code>ssh-add ~/.ssh/identity</code><br>(将 ~/.ssh/identity 专用 RSA 密钥添加到 ssh-agent 的高速缓存中)<br>(其他命令请参考<a href="https://wiki.archlinux.org/index.php/SSH_Keys_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29" target="_blank" rel="external">SSH Keys</a>)</p>
-<h3 id="SSH翻墙"><em>SSH翻墙</em></h3><p>原理：通过 SSH 构建一个加密的 SOCKS 协议信道。</p>
-<h5 id="1-_SOCKS_协议："><em>1. SOCKS 协议：</em></h5><p>主要用于局域网防火墙之内的机器访问外网服务器，实际上是一个转发协议。<br>作用：将客户端对某个远程服务器的请求送到 SOCKS 服务器端，通过 SOCKS 服务器端发起对目标服务器的请求并获得结果，SOCKS 服务器端再将结果发回给客户端。</p>
-<h5 id="2-_SSH隧道"><em>2. SSH隧道</em></h5><h6 id="绑定本地端口"><strong><em>绑定本地端口</em></strong></h6><p>参数：<code>-D port</code><br>命令：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>ssh -<span class="constant">D </span><span class="number">8080</span> user<span class="variable">@host</span></span><br></pre></td></tr></table></figure></p>
-<p>解释：SSH 建立一个 socket 去监听本地的8080端口。一旦有数据传向那个端口，就自动把它转移到 SSH 连接上面，发往远程主机。</p>
-<h6 id="本地端口转发"><strong><em>本地端口转发</em></strong></h6><p>参数：<code>-L port:host:hostport</code><br>情景：本地主机 host1 与远程主机 host2 之间无法连通，而主机 host3 可同时连通这两台主机。于是，可以通过host3，将 host1 连上 host2。<br>在 host1 执行下面的命令：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="tag">ssh</span> <span class="tag">-L</span> 2121<span class="pseudo">:host2</span><span class="pseudo">:21</span> <span class="tag">host3</span></span><br></pre></td></tr></table></figure></p>
-<p>命令中的 L 参数接受三个值：”本地端口:目标主机:目标主机端口”，它们之间用冒号分隔。<br>命令解释：本地机器 host1 将分配一个 socket 侦听 2121 端口, 一旦有数据传向这个端口，就自动把它转移到SSH连接上面，发往远程主机 host3，同时远程主机 host3 和 host2 的 21 端口建立连接，host3将把接收到的所有数据，转发到目标主机 host2 的21端口。</p>
-<p><strong>注：</strong></p>
-<ul>
-<li>特殊用法：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="tag">ssh</span> <span class="tag">-L</span> 5900<span class="pseudo">:localhost</span><span class="pseudo">:5900</span> <span class="tag">host3</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>解释：表示将本机的5900端口绑定 host3 的5900端口（这里的localhost指的是host3，因为目标主机是相对host3而言的）。</p>
-<ul>
-<li>通过host3的端口转发，SSH登录host2：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="tag">ssh</span> <span class="tag">-L</span> 9001<span class="pseudo">:host2</span><span class="pseudo">:22</span> <span class="tag">host3</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这时，只要ssh登录本机的9001端口，就相当于登录了 host2：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -<span class="tag">p</span> <span class="number">9001</span> localhost</span><br></pre></td></tr></table></figure></p>
-<h6 id="远程端口转发"><strong><em>远程端口转发</em></strong></h6><p>参数：<code>-R port:host:hostport</code><br>远程端口转发提供了和本地转发相反的功能，它允许任何远程主机通过SSH隧道连接到本机。<br>承接上面的例子，要想让 host1 连通 host2，也在 host3 执行下面的命令：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="tag">ssh</span> <span class="tag">-R</span> 2121<span class="pseudo">:host2</span><span class="pseudo">:21</span> <span class="tag">host1</span></span><br></pre></td></tr></table></figure></p>
-<p>R参数接受三个值：”远程主机端口:目标主机:目标主机端口”。<br>命令解释：让远程主机 host1 分配一个 socket 监听它自己的2121端口，一旦有数据传向这个端口，就自动把它转移到SSH连接上面，发往本地主机 host3，同时本地主机 host3 和 host2 的 21 端口建立连接，host3 将把接收到的所有数据，转发到目标主机 host2 的21端口。<br>由于对于 host3 来说，host1 是远程主机，所以被称为”远程端口绑定”。</p>
-<p>注：</p>
-<ul>
-<li>“远程端口转发”的前提条件是，host1和host3两台主机都有 sshD 和 ssh 客户端。</li>
-</ul>
-<h5 id="3-_实现步骤"><em>3. 实现步骤</em></h5><ol>
-<li><p>开始连接：<br><code>$ ssh -ND 4711 user@host</code><br>(“user”是你在“host”这台SSH服务器上运行的用户名。它会让你输入密码。“N”表示不采用交互提示，而“D”表示指定监听的本地端口)</p>
-</li>
-<li><p>配置浏览器(或其它程序)：<br>将浏览器设置好使用 SOCKS 代理后，之后发起的网站浏览请求将由浏览器将其扔进 SOCKS 本地端口，然后在远程端口另一端由 SSH 服务器端向真正的服务器发起请求并返回结果。</p>
-</li>
-</ol>
-<p>由于整个通信结果是加密的，所以我们可以安全地穿过G(和)F(谐)W而不被其发现我们的真正请求。</p>
-<p><strong>注意</strong><br>DNS 使用 UDP 传输协议，而Socks v4 不支持 UDP 传输协议的转发，Socks v5 才支持。当浏览器使用 Socks v4 时，它会试图通过本地 DNS 服务解析域名。当我们在 DNS 被污染的网络中，这第一步就会失败，导致我们仍然无法访问某些网站。</p>
-<p>解决方案：</p>
-<ol>
-<li><p>直接使用 Socks v5 要求远程解析 DNS 地址，但这依赖于使用的浏览器(很多浏览器只支持 Socks v4)，而且即使强制使用 Socks v5，很多浏览器出于方便的考虑，仍然会使用本地 DNS。目前为止唯一一种已知可以强制打开远程 DNS 解析的浏览器是 Firefox；</p>
-</li>
-<li><p>使用 SSH 加 HTTP 代理（比如 AutoProxy）。此时的区别在于浏览器在使用 HTTP 代理时不会做本地域名解析，而是通过 CONNECT 命令交给远程服务器，从而得以绕开本地被污染的 DNS 数据。</p>
-</li>
-</ol>
-<h3 id="SCP"><em>SCP</em></h3><p>文件 从 本地 复制到 远程：<br><code>scp SourceFile user@host:directory/TargetFile</code></p>
-<p>文件 从 远程 复制到 本地：<br><code>scp user@host:directory/SourceFile TargetFile</code></p>
-<p>目录 从 远程 复制到 本地：<br><code>scp -r user@host:directory/SourceFolder TargetFolder</code></p>
-<p>默认端口22，可指定端口，如下:<br><code>scp -P 2222 user@host:directory/SourceFile TargetFile</code></p>
-<p><strong>注意</strong></p>
-<ol>
-<li><p>用 SCP 而不是 FTP 传文件。FTP在网络上用明文传送数据、用户帐号和用户口令，很容易受到中间人（man-in-the-middle）攻击，并不安全；</p>
-</li>
-<li><p>SCP 远端的时候，可按Tab键查看远端的目录和文件（需要无口令的用户认证）。</p>
-</li>
-</ol>
-<h2 id="后记">后记</h2><p>将自己在 Linux 上的学习过程记录下来，就这样吧(＠￣ー￣＠)</p>
-
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-          <div class="post-tags">
-            
-              <a href="/tags/Linux/">
-                #Linux
-              </a>
-            
-          </div>
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/04/03/hexo-problem/">
-                Hexo搭建博客过程中遇到的problem
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2015-04-03
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="/categories/编程的世界/">编程的世界</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/04/03/hexo-problem/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/03/hexo-problem/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h1 id="Hexo搭建博客中遇到的problem">Hexo搭建博客中遇到的problem</h1><p><strong>晕晕呼呼（︶︿︶）=凸</strong></p>
-<p>在Hexo搭建博客过程中，我最开始并不是直接去的官网，而是百度了一篇教程，准备依样画葫芦，结果。。。总是出现一些奇怪的问题，好吧，将一些“坑得我晕晕呼呼”的题目的问题在这记录一下 〒▽〒</p>
-<h3 id="0x00_找不到需要的命令">0x00 找不到需要的命令</h3><p>貌似网上能找到的教程所使用的Hexo的版本都是旧的了，因此，在你照着教程进行了所谓的全套安装配置后，神奇地发现，有些命令好像不存在啊摔（╯‵□′）╯︵┴─┴ ，一个是<code>$ hexo s</code>，这个需要在安装Hexo完成后执行以下命令<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo init &lt;folder&gt;</span><br><span class="line"><span class="variable">$ </span>cd &lt;folder&gt;</span><br><span class="line"><span class="variable">$ </span>npm install</span><br></pre></td></tr></table></figure></p>
-<p>另一个是<code>$ hexo deploy</code>，这个需要安装<code>hexo-deployer-git</code>,命令是<br><code>$ npm install hexo-deployer-git --save</code></p>
-<h3 id="0x01_部署过程中出现错误">0x01 部署过程中出现错误</h3><p>同上，版本问题，<code>_config.yml</code>文件中的配置出现错误，教程中是<br><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="class"><span class="keyword">type</span>: <span class="title">github</span></span></span><br></pre></td></tr></table></figure></p>
-<p>而在现在的版本中应该是<br><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="class"><span class="keyword">type</span>: <span class="title">git</span></span></span><br></pre></td></tr></table></figure></p>
-<h3 id="0x02_error:_RPC_failed;_result=55,_HTTP_code_=_200">0x02 error: RPC failed; result=55, HTTP code = 200</h3><p>执行<code>$ hexo deploy</code>将博客部署到github上时出现错误：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">error: <span class="type">RPC</span> failed; <span class="literal">result</span>=<span class="number">55</span>, <span class="type">HTTP</span> code = <span class="number">200</span></span><br><span class="line">fatal: <span class="type">The</span> remote <span class="keyword">end</span> hung up unexpectedly</span><br></pre></td></tr></table></figure></p>
-<p>经检查，发现问题处在<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## <span class="string">Docs:</span> <span class="string">http:</span><span class="comment">//hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="string">deploy:</span></span><br><span class="line"><span class="label">  type:</span> git</span><br><span class="line"><span class="label">  repository:</span> <span class="string">https:</span><span class="comment">//github.com/PirateHao/PirateHao.github.io.git</span></span><br><span class="line"><span class="label">  branch:</span> master</span><br></pre></td></tr></table></figure></p>
-<p>中repository所用的协议上，将https换成ssh就可以成功部署了：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## <span class="string">Docs:</span> <span class="string">http:</span><span class="comment">//hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="string">deploy:</span></span><br><span class="line"><span class="label">  type:</span> git</span><br><span class="line"><span class="label">  repository:</span> git<span class="annotation">@github</span>.<span class="string">com:</span>PirateHao/PirateHao.github.io.git</span><br><span class="line"><span class="label">  branch:</span> master</span><br></pre></td></tr></table></figure></p>
-<h3 id="0x03_生成过程中出现错误">0x03 生成过程中出现错误</h3><p>执行<code>$ hexo g</code>生成时出现错误：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR Process failed:</span><br><span class="line">JS-YAML: can <span class="operator">not</span> <span class="built_in">read</span> <span class="operator">a</span> block mapping entry; <span class="operator">a</span> multiline key may <span class="operator">not</span> be <span class="operator">an</span> implicit key <span class="keyword">at</span> <span class="built_in">line</span> <span class="number">5</span>, column <span class="number">1</span>:</span><br></pre></td></tr></table></figure></p>
-<p>经检查，发现问题出于设置语句中冒号：后面没留空格，没留空格，没留空格……</p>
-<h2 id="后记">后记</h2><p>我就看看，不说话(~￣▽￣)~</p>
-
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-          <div class="post-tags">
-            
-              <a href="/tags/hexo/">
-                #hexo
-              </a>
-            
-          </div>
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-
-          </div>
-
-          
-            <div class="pagination">
-              <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
             </div>
+
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2015/04/07/learn-linux-1/">Linux学习笔记0x00 SSH</a>
+              
+            </div>
+          </div>
+        
+
+        
+        
+      </div>
+    
+  </div>
+
+
+
+  
+    <div class="comments" id="comments">
+      
+        <div class="ds-thread" data-thread-key="2015/04/09/learn-linux-2/"
+             data-title="Linux学习笔记0x01 作业管理" data-url="http://yoursite.com/2015/04/09/learn-linux-2/">
+        </div>
+
+      
+    </div>
+  
+
+          </div>
+
           
         </div>
 
@@ -548,6 +275,15 @@
 <div id="sidebar" class="sidebar">
   <div class="sidebar-inner">
 
+    
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview">
+          站点概览
+        </li>
+      </ul>
     
 
     <div class="site-overview">
@@ -602,6 +338,17 @@
 
     </div>
 
+    
+      <div class="post-toc-wrap sidebar-panel-active">
+        <div class="post-toc-indicator-top post-toc-indicator"></div>
+        <div class="post-toc">
+          
+          
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux学习笔记0x01_作业管理"><span class="nav-number">1.</span> <span class="nav-text">Linux学习笔记0x01 作业管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#限制"><span class="nav-number">1.0.1.</span> <span class="nav-text">限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体命令"><span class="nav-number">1.0.2.</span> <span class="nav-text">具体命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#&_将工作放到背景中去运行"><span class="nav-number">1.0.2.0.1.</span> <span class="nav-text">& 将工作放到背景中去运行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#[Ctrl]-Z_[Ctrl]-C_[Ctrl]-\"><span class="nav-number">1.0.2.0.2.</span> <span class="nav-text">[Ctrl]-Z [Ctrl]-C [Ctrl]-\</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#jobs_查看目前背景中的工作状态"><span class="nav-number">1.0.2.0.3.</span> <span class="nav-text">jobs 查看目前背景中的工作状态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#fg_将背景工作拿到前景来处理"><span class="nav-number">1.0.2.0.4.</span> <span class="nav-text">fg 将背景工作拿到前景来处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#bg_让工作在背景下的状态由暂停变成运行中"><span class="nav-number">1.0.2.0.5.</span> <span class="nav-text">bg 让工作在背景下的状态由暂停变成运行中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#kill_管理背景当中的工作"><span class="nav-number">1.0.2.0.6.</span> <span class="nav-text">kill 管理背景当中的工作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后记"><span class="nav-number">1.0.3.</span> <span class="nav-text">后记</span></a></li></ol></li></ol></li></ol></div>
+          
+        </div>
+        <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+      </div>
     
 
   </div>
@@ -815,6 +562,328 @@
 
 
   
+  
+<script type="text/javascript" id="bootstrap.scrollspy.custom">
+  /* ========================================================================
+  * Bootstrap: scrollspy.js v3.3.2
+  * http://getbootstrap.com/javascript/#scrollspy
+  * ========================================================================
+  * Copyright 2011-2015 Twitter, Inc.
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * ======================================================================== */
+
+  /**
+   * Custom by iissnan
+   *
+   * - Add a `clear.bs.scrollspy` event.
+   * - Esacpe targets selector.
+   */
+
+
+  +function ($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body          = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector       = (this.options.target || '') + ' .nav li > a'
+      this.offsets        = []
+      this.targets        = []
+      this.activeTarget   = null
+      this.scrollHeight   = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION  = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function () {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function () {
+      var that          = this
+      var offsetMethod  = 'offset'
+      var offsetBase    = 0
+
+      this.offsets      = []
+      this.targets      = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase   = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function () {
+          var $el   = $(this)
+          var href  = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href
+            && $href.length
+            && $href.is(':visible')
+            && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+        })
+        .sort(function (a, b) { return a[0] - b[0] })
+        .each(function () {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function () {
+      var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets      = this.offsets
+      var targets      = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy')  // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i]
+          && scrollTop >= offsets[i]
+          && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+          && this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function (target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function () {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function () {
+        var $this   = $(this)
+        var data    = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy             = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function () {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function () {
+      $('[data-spy="scroll"]').each(function () {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0 && isDesktop()) {
+        setTimeout(function () {
+          $('.sidebar-toggle').trigger('click');
+        }, 800);
+      }
+    });
+  </script>
+
+
+
 
   
 

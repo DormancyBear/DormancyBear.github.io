@@ -44,11 +44,13 @@
   </script>
 
 
-  <title> 归档 // 刘大耗子の博客 </title>
+  <title> 刘大耗子の博客 </title>
 </head>
 
 <body>
-  <div class="container one-column  page-archive ">
+  <div class="container one-column 
+   page-home 
+">
     <div class="headband"></div>
 
     <div id="header" class="header">
@@ -120,33 +122,9 @@
             
           
 
-          <div id="posts" class="posts-collapse">
+          <div id="posts" class="posts-expand">
             
-
-  <span class="archive-move-on"></span>
-
-  <span class="archive-page-counter">
-    
-    
-     
-    
-    嗯..! 目前共计 4 篇日志。 继续努力。
-  </span>
-
   
-
-    
-    
-    
-
-    
-      
-      <div class="collection-title">
-        <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
-      </div>
-    
-    
-
     
 
   <div class="post post-type-normal ">
@@ -158,8 +136,8 @@
           
           
             
-              <a class="post-title-link" href="/2015/04/09/learn-linux-2/">
-                Linux学习笔记0x01 作业管理
+              <a class="post-title-link" href="/2015/04/01/learn-nodejs-1/">
+                Node.js学习笔记
               </a>
             
           
@@ -169,18 +147,31 @@
       <div class="post-meta">
         <span class="post-time">
           
-            04-09
+            发表于 2015-04-01
           
         </span>
 
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="/categories/编程的世界/">编程的世界</a>
+
+                
+                
+
+              
+            </span>
+          
         
 
         
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/04/09/learn-linux-2/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/09/learn-linux-2/"></span>
+            <a href="/2015/04/01/learn-nodejs-1/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/01/learn-nodejs-1/"></span>
             </a>
           </span>
           
@@ -189,124 +180,50 @@
     </div>
 
     
+      <div class="post-body">
 
-    
-  </div>
+        
+        
 
-
-
-  
-
-    
-    
-    
-
-    
-    
-
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
+        
           
+            <h1 id="Node-js学习笔记">Node.js学习笔记</h1><h2 id="0x00_前言">0x00 前言</h2><p>因为hexo的关系，对Node.js产生了兴趣，下午上课的时候闲着无聊（orz）看了下<a href="http://www.nodebeginner.org/index-zh-cn.html" target="_blank" rel="external">Node入门</a>与朴灵老师的《深入浅出Node.js》一书。</p>
+<p>发现与一般的后端语言相比，Node.js实现异步处理请求的方式真是太有趣了———在php等语言的相关编程中，程序的编写过程更符合我们在自然语言中的线性思维习惯，即以一种同步阻塞的方式来执行，而Node.js却是通过“各种跳”的方式来实现了异步。</p>
+<h2 id="0x01_机制初探">0x01 机制初探</h2><p>我们知道，JavaScript是单线程的，这就意味着，如果以同步的方式运行，一旦网页POST过来一张图片之类的资源，那么，程序将停顿以接收这些很大的网络资源，在这期间，任何用户发起的请求都不会被响应，可见，花费在I/O上的代价是极其昂贵的，因此，Node采取了几种很有趣的机制以实现异步I/O。</p>
+<p>在进程启动时，Node便会创建一个类似于while(true)的循环，称为事件循环（Event Loop），每次循环的过程就是查看是否有事件待处理，如果有，就取出事件及其相关的回调函数(Callback)，执行他们，然后进入下个循环。</p>
+<p>而每次循环中是怎么判断是否有事件待处理的呢？它是通过一种称为观察者的概念来实现的，在我理解，观察者类似于一个任务队列，每当有事件发生时（如网络请求、文件I/O等），这些事件就会被传递到对应的观察者那里（每个事件循环中有一个或多个观察者，观察者有多种分类，如文件I/O观察者、网络I/O观察者等），事件循环则从观察者那里取出事件并处理。</p>
+<p>另外，Node.js令我感到新奇的一个方面是：在一般的（同步）编程中，回调函数往往由我们自行调用，但在Node里，回调函数却并不由开发者来调用。</p>
+<p>当JavaScript发起调用，它会将当前的I/O操作推入线程池中等待执行，而自身却立即返回，继续执行当前任务的后续操作，Node以这种方式实现了异步。</p>
+<p>至于线程池中的I/O操作调用呢？其实，在每次事件循环中，I/O观察者都会检查线程池中是否有执行完的请求，如果存在，就会将其加入到队列中，然后把它当作事件处理，取出回调函数和结果调用执行。</p>
+<h2 id="0x02_误解">0x02 误解</h2><h5 id="Node是单线程的">Node是单线程的</h5><p>这里的单线程仅仅只是JavaScript执行在单线程中罢了，Node自身其实是多线程的，在Node中，无论是*nix还是Windows平台，内部完成I/O任务的另有线程池。尽管用户代码无法并行执行，但所有的I/O(磁盘I/O和网络I/O等)却是可以并行的。</p>
+<h2 id="0x03_后记">0x03 后记</h2><p>出于兴趣，简单地接触了下Node.js，感觉它很适合用来做I/O调度，在复杂计算上却没有多大优势（可能我过于武断。。。），另外，它以高并发著称，实现的方式确实挺好玩的（也可能是我孤陋寡闻，至少这种实现方式对于我十分新颖。。。），在这里做个小笔记，以后重拾的时候也好有个参考:)</p>
+
           
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+          <div class="post-tags">
             
-              <a class="post-title-link" href="/2015/04/07/learn-linux-1/">
-                Linux学习笔记0x00 SSH
+              <a href="/tags/Node-js/">
+                #Node.js
               </a>
             
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            04-07
-          
-        </span>
+          </div>
+        
 
         
 
         
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/04/07/learn-linux-1/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/07/learn-linux-1/"></span>
-            </a>
-          </span>
-          
+        
+          <div class="post-eof"></div>
         
       </div>
-    </div>
-
-    
-
     
   </div>
-
-
-
-  
-
-    
-    
-    
-
-    
-    
-
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/04/03/hexo-problem/">
-                Hexo搭建博客过程中遇到的problem
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            04-03
-          
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/04/03/hexo-problem/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/03/hexo-problem/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-
-    
-  </div>
-
 
 
   
@@ -315,7 +232,7 @@
 
           
             <div class="pagination">
-              <span class="page-number current">1</span><a class="page-number" href="/archives/2015/page/2/">2</a><a class="extend next" rel="next" href="/archives/2015/page/2/">&raquo;</a>
+              <a class="extend prev" rel="prev" href="/">&laquo;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
             </div>
           
         </div>
@@ -430,12 +347,6 @@
 
   
   
-  
-    <script type="text/javascript">
-      postMotionOptions = {stagger: 100, drag: true};
-    </script>
-  
-
 
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
@@ -605,12 +516,6 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
-
 
   
 

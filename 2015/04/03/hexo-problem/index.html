@@ -171,7 +171,7 @@
 <p>经检查，发现问题处在<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## <span class="string">Docs:</span> <span class="string">http:</span><span class="comment">//hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="string">deploy:</span></span><br><span class="line"><span class="label">  type:</span> git</span><br><span class="line"><span class="label">  repository:</span> <span class="string">https:</span><span class="comment">//github.com/PirateHao/PirateHao.github.io.git</span></span><br><span class="line"><span class="label">  branch:</span> master</span><br></pre></td></tr></table></figure></p>
 <p>中repository所用的协议上，将https换成ssh就可以成功部署了：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## <span class="string">Docs:</span> <span class="string">http:</span><span class="comment">//hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="string">deploy:</span></span><br><span class="line"><span class="label">  type:</span> git</span><br><span class="line"><span class="label">  repository:</span> git<span class="annotation">@github</span>.<span class="string">com:</span>PirateHao/PirateHao.github.io.git</span><br><span class="line"><span class="label">  branch:</span> master</span><br></pre></td></tr></table></figure></p>
 <h3 id="0x03_生成过程中出现错误">0x03 生成过程中出现错误</h3><p>执行<code>$ hexo g</code>生成时出现错误：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR Process failed:</span><br><span class="line">JS-YAML: can <span class="operator">not</span> <span class="built_in">read</span> <span class="operator">a</span> block mapping entry; <span class="operator">a</span> multiline key may <span class="operator">not</span> be <span class="operator">an</span> implicit key <span class="keyword">at</span> <span class="built_in">line</span> <span class="number">5</span>, column <span class="number">1</span>:</span><br></pre></td></tr></table></figure></p>
-<p>经检查，发现问题出于设置语句中冒号：后面没留空格，没留空格……</p>
+<p>经检查，发现问题出于设置语句中冒号：后面没留空格，没留空格，没留空格……</p>
 <h2 id="后记">后记</h2><p>我就看看，不说话(~￣▽￣)~</p>
 
         
@@ -261,7 +261,7 @@
       <p class="site-description motion-element">写些想写的东西，就这样～～</p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">
